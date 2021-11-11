@@ -26,6 +26,7 @@ If you're using a GUI (like [HeidiSQL](https://www.heidisql.com/) on Windows/[Se
 Host: `0.0.0.0`
 User: `root`
 Password: `password`
+Database: `retail_ai`
 Port: `8081`
 ```
 
@@ -36,9 +37,11 @@ If you're installing new dependencies, you'll need to rebuild the docker images.
 `.env` file needs to be created that will take the following parameters.
 
 ```
-HOST - web/local address where the MariaDB database is located.
-USER - username on the MariaDB server.
-PASSWORD - Password to access MariaDB.
-DB_NAME - Database Name.
+SERVER_HOST - Host URL to access the server.
+SERVER_PORT - Host PORT to access the server.
+DB_HOST - web/local address where the MariaDB database is located.
+DB_USER - username on the MariaDB server. 
+DB_PASSWORD - Password to access MariaDB.
+DB_NAME - `retail_ai`.
 ORIGINS - CORS Related Websites.
 ```
