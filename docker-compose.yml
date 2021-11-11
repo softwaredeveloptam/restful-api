@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  server:
+    image: node:16.13.0
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    working_dir: /usr/retail-ai
+    ports:
+      - 8080:8080
+    networks:
+      - recipes
+    depends_on:
+      - maria_db
+    volumes:
+      - ./src:/usr/retail-ai/src
+  maria_db:
+    image: mariadb:10.5.12
+    ports: 
+      - 8081:3306
+    networks:
+      - recipes
+    volumes:
+      - ./create.sql:/docker-entrypoint-initdb.d/setup.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+
+networks:
+  recipes:
