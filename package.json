@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "ts-node-dev --poll src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "ts-node src/index.ts",
+    "old-start": "node dist/index.js",
     "lint": "eslint --ext .ts,.js .",
-    "lintfix": "eslint --fix --ext .ts,.js .",
-    "heroku-prebuild": "yarn build"
+    "lintfix": "eslint --fix --ext .ts,.js ."
   },
   "git": {
     "pre-commit": [
@@ -29,7 +29,8 @@
     "lodash": "^4.17.21",
     "mariadb": "^2.5.5",
     "morgan": "^1.10.0",
-    "passport": "^0.5.0"
+    "passport": "^0.5.0",
+    "ts-node": "^10.4.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
