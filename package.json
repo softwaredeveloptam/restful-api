@@ -9,7 +9,7 @@
     "start": "node dist/index.js",
     "lint": "eslint --ext .ts,.js .",
     "lintfix": "eslint --fix --ext .ts,.js .",
-    "heroku-prebuild": "tsc"
+    "heroku-prebuild": "yarn build"
   },
   "git": {
     "pre-commit": [
