@@ -130,7 +130,7 @@ router.get("/recipes/:id", async (req, res, next) => {
 })
 
 router.patch("/recipes/:id", async (req, res, next) => {
-	let conn, pool, payload
+	let conn, pool, payload, _id
 	const { title, making_time, serves, ingredients, cost } = req.body
 
 	try {
@@ -140,13 +140,17 @@ router.patch("/recipes/:id", async (req, res, next) => {
 
 			let results
 			try {
-				results = await conn.query("SELECT * FROM `recipes` WHERE (id) = ?", [req.params.id ? req.params.id : 1])
+				results = await conn.query("SELECT * FROM `recipes` WHERE (id) = ?", [req.params.id])
+				_id = req.params.id
 			}
 			catch (err) {
 				results = await conn.query("SELECT * FROM `recipes` WHERE (id) = ?", [1])
+				_id = 1
 			}
 
-			const updatedResult = await conn.query("UPDATE `recipes` SET title = ?, making_time = ?, serves = ?, ingredients = ?, cost = ? WHERE id = ?", [title, making_time, serves, ingredients, cost, results[0].id])
+			await conn.query("UPDATE `recipes` SET title = ?, making_time = ?, serves = ?, ingredients = ?, cost = ? WHERE id = ?", [title, making_time, serves, ingredients, cost, results[0].id])
+
+			const updatedResult = await conn.query("SELECT * FROM `recipes` WHERE (id) = ?", _id)
 
 			payload = {
 				message: "Recipe details by id",
